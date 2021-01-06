@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.C196">
-        <activity android:name=".AllTermsActivity"></activity>
+        <activity android:name=".AllTermsActivity"
+            android:label="All Terms"
+            android:parentActivityName=".MainActivity"
+            ></activity>
         <activity android:name=".MyTermActivity"
             android:label="My Term"
             android:parentActivityName=".MainActivity"/>

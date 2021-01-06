@@ -19,10 +19,25 @@
         android:id="@+id/button4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="My Term"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:onClick="myTermScreen"
-        tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="216dp" />
+        android:text="My Term"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="All Terms"
+        android:onClick="allTermsScreen"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/button4"
+        tools:layout_editor_absoluteX="123dp"
+        tools:layout_editor_absoluteY="99dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

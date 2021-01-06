@@ -18,4 +18,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, MyTermActivity.class);
         startActivity(intent);
     }
+
+    public void allTermsScreen(View view) {
+        Intent intent = new Intent(MainActivity.this, AllTermsActivity.class);
+        startActivity(intent);
+    }
 }
