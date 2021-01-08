@@ -11,14 +11,14 @@ import static androidx.room.ForeignKey.CASCADE;
         foreignKeys = @ForeignKey(
                 entity = Term.class,
                 parentColumns = "term_id",
-                childColumns = "term_id_fk",
+                childColumns = "term_fk",
                 onDelete = CASCADE
         ))
 public class Course {
     @PrimaryKey(autoGenerate = true)
     private int course_id;
-    @ColumnInfo(name = "term_id_fk")
-    private int term_id_fk;
+    @ColumnInfo(name = "term_fk")
+    private int term_fk;
     @ColumnInfo(name = "course_name")
     private String course_name;
     @ColumnInfo(name = "course_start")
@@ -32,9 +32,9 @@ public class Course {
     @ColumnInfo(name = "course_alert_date")
     private Date course_alert_date;
 
-    public Course(int course_id, int term_id_fk, String course_name, Date course_start, Date course_end, String course_status, String course_notes, Date course_alert_date ){
+    public Course(int course_id, int term_fk, String course_name, Date course_start, Date course_end, String course_status, String course_notes, Date course_alert_date ){
         this.course_id = course_id;
-        this.term_id_fk = term_id_fk;
+        this.term_fk = term_fk;
         this.course_name = course_name;
         this.course_start = course_start;
         this.course_end = course_end;
@@ -51,12 +51,12 @@ public class Course {
         this.course_id = course_id;
     }
 
-    public int getTerm_id_fk() {
-        return term_id_fk;
+    public int getTerm_fk() {
+        return term_fk;
     }
 
-    public void setTerm_id_fk(int term_id_fk) {
-        this.term_id_fk = term_id_fk;
+    public void setTerm_fk(int term_fk) {
+        this.term_fk = term_fk;
     }
 
     public String getCourse_name() {
