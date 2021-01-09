@@ -17,6 +17,8 @@ public class Term {
     @ColumnInfo(name = "term_end")
     private Date term_end;
 
+    public Term(){}
+
     public Term(int term_id, String term_name, Date term_start, Date term_end){
         this.term_id = term_id;
         this.term_name = term_name;

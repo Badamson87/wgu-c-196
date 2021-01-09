@@ -27,7 +27,9 @@ public class Assessment {
     private Date assessment_start;
     @ColumnInfo(name = "assessment_end")
     private Date assessment_end;
-    
+
+    public Assessment(){}
+
     public Assessment(int assessment_id, int course_fk, String assessment_name, Date assessment_start, Date assessment_end){
         this.assessment_id = assessment_id;
         this.course_fk = course_fk;

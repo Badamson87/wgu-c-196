@@ -32,6 +32,8 @@ public class Course {
     @ColumnInfo(name = "course_alert_date")
     private Date course_alert_date;
 
+    public Course(){}
+
     public Course(int course_id, int term_fk, String course_name, Date course_start, Date course_end, String course_status, String course_notes, Date course_alert_date ){
         this.course_id = course_id;
         this.term_fk = term_fk;

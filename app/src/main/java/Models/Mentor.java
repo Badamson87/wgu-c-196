@@ -26,6 +26,8 @@ public class Mentor {
     @ColumnInfo(name = "mentor_email")
     private String mentor_email;
 
+    public Mentor(){}
+
     public Mentor (int mentor_id, int course_fk, String mentor_name, String mentor_phone, String mentor_email){
         this.mentor_id = mentor_id;
         this.course_fk = course_fk;

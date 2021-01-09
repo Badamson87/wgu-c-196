@@ -22,6 +22,8 @@ public class CourseNote {
     @ColumnInfo(name = "note")
     private String note;
 
+    public CourseNote(){}
+
     public CourseNote(int courseNote_id, int course_fk, String note){
         this.courseNote_id = courseNote_id;
         this.course_fk = course_fk;
