@@ -9,13 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.C196">
-        <activity android:name=".TermDetailActivity"
+        <activity android:name=".CreateCourseActivity"
+            android:label="Create Course"></activity>
+        <activity
+            android:name=".TermDetailActivity"
             android:label="Term Detail"
-            android:parentActivityName=".AllTermsActivity" ></activity>
+            android:parentActivityName=".AllTermsActivity" />
         <activity
             android:name=".AddTermActivity"
-            android:label="Create Term"
-            android:parentActivityName=".AllTermsActivity" />
+            android:label="Create Term" />
         <activity
             android:name=".AllTermsActivity"
             android:label="All Terms"

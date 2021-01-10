@@ -2,7 +2,9 @@ package wgu.c_196;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import Helpers.Database;
@@ -31,5 +33,10 @@ public class TermDetailActivity extends AppCompatActivity {
         String end = term.getTerm_end().toString().substring(0, 10) + ", " + term.getTerm_end().toString().substring(24, 28);
         displayedTermName.setText(term.getTerm_name());
         displayedTermDates.setText(start + " - " + end);
+    }
+
+    public void addCourseScreen(View view) {
+        Intent intent = new Intent(TermDetailActivity.this, CreateCourseActivity.class);
+        startActivity(intent);
     }
 }
