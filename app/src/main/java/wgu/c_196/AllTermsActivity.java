@@ -12,6 +12,7 @@ import Models.Term;
 
 public class AllTermsActivity extends AppCompatActivity {
     ListView allTermsList;
+    List<Term> allTerms;
     Database db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,11 +22,11 @@ public class AllTermsActivity extends AppCompatActivity {
         allTermsList = findViewById(R.id.allTermsList);
         this.getAllTerms();
         allTermsList.setOnItemClickListener((parent, view, position, id) -> {
-            loadTermDetail(id);
+            loadTermDetail(allTerms.get(position).getTerm_id());
         });
     }
 
-    private void loadTermDetail(long termId){
+    private void loadTermDetail(int termId){
         Intent intent = new Intent(AllTermsActivity.this, TermDetailActivity.class);
         intent.putExtra("termId", termId);
         startActivity(intent);
@@ -33,6 +34,10 @@ public class AllTermsActivity extends AppCompatActivity {
 
     private void getAllTerms(){
         List<Term> terms = db.termDao().getAllTerms();
+        this.allTerms = terms;
+        terms.forEach((term -> {
+            System.out.println("TermName: " + term.getTerm_name() + "TermId: " + term.getTerm_id());
+        }));
         ArrayAdapter<Term> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, terms);
         allTermsList.setAdapter(adapter);
     }
