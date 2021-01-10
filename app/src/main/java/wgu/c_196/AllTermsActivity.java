@@ -1,15 +1,12 @@
 package wgu.c_196;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import java.util.List;
-
 import Helpers.Database;
 import Models.Term;
 
@@ -23,10 +20,15 @@ public class AllTermsActivity extends AppCompatActivity {
         db = Database.getInstance(getApplicationContext());
         allTermsList = findViewById(R.id.allTermsList);
         this.getAllTerms();
-        System.out.println("starting term print from all terms");
-        db.termDao().getAllTerms().forEach((term -> {
-          System.out.println(term.getTerm_name());
-      }));
+        allTermsList.setOnItemClickListener((parent, view, position, id) -> {
+            loadTermDetail(id);
+        });
+    }
+
+    private void loadTermDetail(long termId){
+        Intent intent = new Intent(AllTermsActivity.this, TermDetailActivity.class);
+        intent.putExtra("termId", termId);
+        startActivity(intent);
     }
 
     private void getAllTerms(){
