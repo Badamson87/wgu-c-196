@@ -27,15 +27,26 @@ public class Assessment {
     private Date assessment_start;
     @ColumnInfo(name = "assessment_end")
     private Date assessment_end;
+    @ColumnInfo(name = "assessment_alarm")
+    private Date assessment_alarm;
 
     public Assessment(){}
 
-    public Assessment(int assessment_id, int course_fk, String assessment_name, Date assessment_start, Date assessment_end){
+    public Assessment(int assessment_id, int course_fk, String assessment_name, Date assessment_start, Date assessment_end, Date assessment_alarm){
         this.assessment_id = assessment_id;
         this.course_fk = course_fk;
         this.assessment_name = assessment_name;
         this.assessment_start = assessment_start;
         this.assessment_end = assessment_end;
+        this.assessment_alarm = assessment_alarm;
+    }
+
+    public Date getAssessment_alarm() {
+        return assessment_alarm;
+    }
+
+    public void setAssessment_alarm(Date assessment_alarm) {
+        this.assessment_alarm = assessment_alarm;
     }
 
     public int getAssessment_id() {
