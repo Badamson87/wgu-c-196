@@ -7,16 +7,14 @@ import androidx.room.TypeConverters;
 
 import Daos.AssessmentDao;
 import Daos.CourseDao;
-import Daos.CourseNoteDao;
 import Daos.MentorDao;
 import Daos.TermDao;
 import Models.Assessment;
 import Models.Course;
-import Models.CourseNote;
 import Models.Mentor;
 import Models.Term;
 
-@androidx.room.Database(entities = {Term.class, Course.class, CourseNote.class, Mentor.class, Assessment.class}, exportSchema = false, version = 1)
+@androidx.room.Database(entities = {Term.class, Course.class, Mentor.class, Assessment.class}, exportSchema = false, version = 2)
 @TypeConverters({Converter.class})
 public abstract class Database extends RoomDatabase {
     private static final String DB_NAME = "wgu_db";
@@ -30,7 +28,6 @@ public abstract class Database extends RoomDatabase {
     }
     public abstract AssessmentDao assessmentDao();
     public abstract CourseDao courseDao();
-    public abstract CourseNoteDao courseNoteDao();
     public abstract MentorDao mentorDao();
     public abstract TermDao termDao();
 }

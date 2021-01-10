@@ -40,10 +40,8 @@ public class AddTermActivity extends AppCompatActivity {
 
     private void saveTerm() {
         if (termNameInput.getText().toString().equals("") || termStartInput.getText().toString().equals("") || termEndInput.getText().toString().equals("")){
-            System.out.println("failed save term null checks");
             return;
         }
-        System.out.println("got past save term null checks");
         Date start = new Date(termStartInput.getText().toString());
         Date end = new Date(termEndInput.getText().toString());
         Term term = new Term();

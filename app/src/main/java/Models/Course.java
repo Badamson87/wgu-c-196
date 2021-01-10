@@ -29,12 +29,12 @@ public class Course {
     private String course_status;
     @ColumnInfo(name = "course_notes")
     private String course_notes;
-    @ColumnInfo(name = "course_alert_date")
-    private Date course_alert_date;
+    @ColumnInfo(name = "course_alert")
+    private boolean course_alert;
 
     public Course(){}
 
-    public Course(int course_id, int term_fk, String course_name, Date course_start, Date course_end, String course_status, String course_notes, Date course_alert_date ){
+    public Course(int course_id, int term_fk, String course_name, Date course_start, Date course_end, String course_status, String course_notes, boolean course_alert ){
         this.course_id = course_id;
         this.term_fk = term_fk;
         this.course_name = course_name;
@@ -42,7 +42,7 @@ public class Course {
         this.course_end = course_end;
         this.course_status = course_status;
         this.course_notes = course_notes;
-        this.course_alert_date = course_alert_date;
+        this.course_alert = course_alert;
     }
 
     public int getCourse_id() {
@@ -101,12 +101,12 @@ public class Course {
         this.course_notes = course_notes;
     }
 
-    public Date getCourse_alert_date() {
-        return course_alert_date;
+    public boolean getCourse_alert() {
+        return course_alert;
     }
 
-    public void setCourse_alert_date(Date course_alert_date) {
-        this.course_alert_date = course_alert_date;
+    public void setCourse_alert(boolean course_alert) {
+        this.course_alert = course_alert;
     }
 
     @Override

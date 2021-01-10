@@ -28,11 +28,11 @@ public class Assessment {
     @ColumnInfo(name = "assessment_end")
     private Date assessment_end;
     @ColumnInfo(name = "assessment_alarm")
-    private Date assessment_alarm;
+    private boolean assessment_alarm;
 
     public Assessment(){}
 
-    public Assessment(int assessment_id, int course_fk, String assessment_name, Date assessment_start, Date assessment_end, Date assessment_alarm){
+    public Assessment(int assessment_id, int course_fk, String assessment_name, Date assessment_start, Date assessment_end, boolean assessment_alarm){
         this.assessment_id = assessment_id;
         this.course_fk = course_fk;
         this.assessment_name = assessment_name;
@@ -41,11 +41,11 @@ public class Assessment {
         this.assessment_alarm = assessment_alarm;
     }
 
-    public Date getAssessment_alarm() {
+    public boolean getAssessment_alarm() {
         return assessment_alarm;
     }
 
-    public void setAssessment_alarm(Date assessment_alarm) {
+    public void setAssessment_alarm(boolean assessment_alarm) {
         this.assessment_alarm = assessment_alarm;
     }
 
