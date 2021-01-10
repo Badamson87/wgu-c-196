@@ -57,4 +57,7 @@ public class Term {
     public void setTerm_end(Date term_end) {
         this.term_end = term_end;
     }
+
+    @Override
+    public String toString(){ return this.getTerm_name();}
 }

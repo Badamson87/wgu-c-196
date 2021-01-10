@@ -108,4 +108,7 @@ public class Course {
     public void setCourse_alert_date(Date course_alert_date) {
         this.course_alert_date = course_alert_date;
     }
+
+    @Override
+    public String toString(){ return this.getCourse_name();}
 }

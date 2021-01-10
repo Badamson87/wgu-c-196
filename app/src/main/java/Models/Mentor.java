@@ -75,4 +75,7 @@ public class Mentor {
     public void setMentor_email(String mentor_email) {
         this.mentor_email = mentor_email;
     }
+
+    @Override
+    public String toString(){ return this.getMentor_name();}
 }

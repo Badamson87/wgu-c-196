@@ -34,25 +34,17 @@ public class AddTermActivity extends AppCompatActivity {
         saveTermButton.setOnClickListener((e) -> {saveTerm();});
     }
 
-    private void saveTerm(){
-        System.out.println("save term clicked");
-        System.out.println(termNameInput.getText().toString());
-        System.out.println(termStartInput.getText().toString());
-        System.out.println(termEndInput.getText().toString());
-     if (termNameInput != null && termStartInput != null && termEndInput !=null)
-     {
-         System.out.println("got past save term null checks");
-         Date start = new Date(termStartInput.getText().toString());
-         Date end = new Date(termEndInput.getText().toString());
-         Term term = new Term();
-         term.setTerm_name(termNameInput.getText().toString());
-         term.setTerm_start(start);
-         term.setTerm_end(end);
-         db.termDao().insertTerm(term);
-     }
-        System.out.println("starting term print from add term");
-        db.termDao().getAllTerms().forEach((term -> {
-            System.out.println(term.getTerm_name());
-        }));
+    private void saveTerm() {
+        if (termNameInput != null && termStartInput != null && termEndInput !=null)
+        {
+            System.out.println("got past save term null checks");
+            Date start = new Date(termStartInput.getText().toString());
+            Date end = new Date(termEndInput.getText().toString());
+            Term term = new Term();
+            term.setTerm_name(termNameInput.getText().toString());
+            term.setTerm_start(start);
+            term.setTerm_end(end);
+            db.termDao().insertTerm(term);
+        }
     }
 }

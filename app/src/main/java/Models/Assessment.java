@@ -88,4 +88,7 @@ public class Assessment {
     public void setAssessment_end(Date assessment_end) {
         this.assessment_end = assessment_end;
     }
+
+    @Override
+    public String toString(){ return this.getAssessment_name();}
 }
