@@ -35,9 +35,6 @@ public class AllTermsActivity extends AppCompatActivity {
     private void getAllTerms(){
         List<Term> terms = db.termDao().getAllTerms();
         this.allTerms = terms;
-        terms.forEach((term -> {
-            System.out.println("TermName: " + term.getTerm_name() + "TermId: " + term.getTerm_id());
-        }));
         ArrayAdapter<Term> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, terms);
         allTermsList.setAdapter(adapter);
     }
