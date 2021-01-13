@@ -21,7 +21,7 @@
 
     <EditText
         android:id="@+id/termNameInput"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginLeft="75dp"
@@ -44,7 +44,7 @@
 
     <TextView
         android:id="@+id/termStartInput"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginLeft="75dp"
@@ -68,7 +68,7 @@
 
     <TextView
         android:id="@+id/termEndInput"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginLeft="75dp"

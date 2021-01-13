@@ -29,6 +29,7 @@ public class AddTermActivity extends AppCompatActivity implements DatePickerDial
     Button  cancelSaveTerm;
     Database db;
     Boolean updateStart;
+    int termID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,17 @@ public class AddTermActivity extends AppCompatActivity implements DatePickerDial
         termEndInput.setOnClickListener((e) -> updateEnd());
         saveTermButton.setOnClickListener((e) -> {saveTerm();});
         cancelSaveTerm.setOnClickListener((e) -> sendToAllTerms());
+        checkForUpdate();
+    }
+
+    private void checkForUpdate(){
+        termID = getIntent().getIntExtra("termId", -1);
+        if (termID > 0){
+            Term originalTerm = db.termDao().getTermById(termID);
+            termNameInput.setText(originalTerm.getTerm_name());
+            termStartInput.setText(originalTerm.getTerm_start().toString().substring(0, 10) + ", " + originalTerm.getTerm_start().toString().substring(24, 28));
+            termEndInput.setText(originalTerm.getTerm_end().toString().substring(0, 10) + ", " + originalTerm.getTerm_end().toString().substring(24, 28));
+        }
     }
 
     private void updateStart(){
@@ -74,8 +86,15 @@ public class AddTermActivity extends AppCompatActivity implements DatePickerDial
         term.setTerm_name(termNameInput.getText().toString());
         term.setTerm_start(start);
         term.setTerm_end(end);
-        db.termDao().insertTerm(term);
-        sendToAllTerms();
+        if (termID > 0) {
+            term.setTerm_id(termID);
+            db.termDao().updateTerm(term);
+            sendToTermDetail();
+        }
+        else {
+            db.termDao().insertTerm(term);
+            sendToAllTerms();
+        }
     }
 
     public void sendToAllTerms(){
@@ -83,6 +102,11 @@ public class AddTermActivity extends AppCompatActivity implements DatePickerDial
         startActivity(intent);
     }
 
+    public void sendToTermDetail(){
+        Intent intent = new Intent(AddTermActivity.this, TermDetailActivity.class);
+        intent.putExtra("termId", termID);
+        startActivity(intent);
+    }
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {

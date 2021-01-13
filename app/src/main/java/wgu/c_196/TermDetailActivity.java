@@ -25,6 +25,7 @@ public class TermDetailActivity extends AppCompatActivity {
     ListView allCoursesByTermList;
     List<Course> allCoursesByTerm;
     FloatingActionButton deleteTerm;
+    FloatingActionButton editTerm;
     int termID;
 
     @Override
@@ -36,10 +37,18 @@ public class TermDetailActivity extends AppCompatActivity {
         displayedTermDates = findViewById(R.id.displayedTermDates);
         allCoursesByTermList = findViewById(R.id.allCoursesByTermList);
         deleteTerm = findViewById(R.id.deleteTerm);
+        editTerm = findViewById(R.id.editTerm);
 
+        editTerm.setOnClickListener((e) -> updateTerm());
         deleteTerm.setOnClickListener((e) -> attemptDeleteTerm());
         db = Database.getInstance(getApplicationContext());
         this.loadDisplay();
+    }
+
+    private void updateTerm(){
+        Intent intent = new Intent(TermDetailActivity.this, AddTermActivity.class);
+        intent.putExtra("termId", termID);
+        startActivity(intent);
     }
 
     private void attemptDeleteTerm(){

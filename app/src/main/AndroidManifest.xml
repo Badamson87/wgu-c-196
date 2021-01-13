@@ -10,14 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.C196">
         <activity android:name=".CreateCourseActivity"
-            android:label="Create Course"></activity>
+            android:label="Course Info"></activity>
         <activity
             android:name=".TermDetailActivity"
             android:label="Term Detail"
             android:parentActivityName=".AllTermsActivity" />
         <activity
             android:name=".AddTermActivity"
-            android:label="Create Term" />
+            android:label="Term Info" />
         <activity
             android:name=".AllTermsActivity"
             android:label="All Terms"
