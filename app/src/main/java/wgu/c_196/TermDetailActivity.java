@@ -85,6 +85,7 @@ public class TermDetailActivity extends AppCompatActivity {
 
     public void addCourseScreen(View view) {
         Intent intent = new Intent(TermDetailActivity.this, CreateCourseActivity.class);
+        intent.putExtra("termId", termID);
         startActivity(intent);
     }
 }

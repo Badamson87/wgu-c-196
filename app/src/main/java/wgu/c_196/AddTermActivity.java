@@ -1,8 +1,6 @@
 package wgu.c_196;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
-
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,12 +9,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import Helpers.Database;
 import Helpers.DatePickerFragment;
 import Models.Term;
@@ -49,7 +42,7 @@ public class AddTermActivity extends AppCompatActivity implements DatePickerDial
     }
 
     private void checkForUpdate(){
-        termID = getIntent().getIntExtra("termId", -1);
+        termID = getIntent().getIntExtra("termId", 0);
         if (termID > 0){
             Term originalTerm = db.termDao().getTermById(termID);
             termNameInput.setText(originalTerm.getTerm_name());
