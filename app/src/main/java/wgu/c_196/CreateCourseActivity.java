@@ -77,10 +77,21 @@ public class CreateCourseActivity extends AppCompatActivity implements DatePicke
            courseStartInput.setText(originalCourse.getCourse_start().toString().substring(0, 10) + ", " + originalCourse.getCourse_start().toString().substring(24, 28));
            courseEndInput.setText(originalCourse.getCourse_end().toString().substring(0, 10) + ", " + originalCourse.getCourse_end().toString().substring(24, 28));
            courseNoteInput.setText(originalCourse.getCourse_notes());
-           // todo radio button and checkbox
            courseAlert.setChecked(originalCourse.getCourse_alert());
+           String status = originalCourse.getCourse_status();
+           if (status == CourseStatus.InProgress.toString()){
+               progressRadio.setChecked(true);
+           }
+           if (status == CourseStatus.Complete.toString()){
+               completeRadio.setChecked(true);
+           }
+           if (status == CourseStatus.Dropped.toString()){
+               droppedRadio.setChecked(true);
+           }
        }
     }
+
+
 
     private void saveTerm(){
         if (checkFields()){
