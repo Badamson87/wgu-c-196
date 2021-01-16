@@ -42,7 +42,16 @@ public class TermDetailActivity extends AppCompatActivity {
         editTerm.setOnClickListener((e) -> updateTerm());
         deleteTerm.setOnClickListener((e) -> attemptDeleteTerm());
         db = Database.getInstance(getApplicationContext());
+        allCoursesByTermList.setOnItemClickListener((parent, view, position, id) -> {
+            loadCourseDetail(allCoursesByTerm.get(position).getCourse_id());
+        });
         this.loadDisplay();
+    }
+
+    private void loadCourseDetail(int courseId){
+        Intent intent = new Intent(TermDetailActivity.this, CourseDetailActivity.class);
+        intent.putExtra("courseId", courseId);
+        startActivity(intent);
     }
 
     private void updateTerm(){

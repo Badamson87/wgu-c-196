@@ -12,9 +12,14 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.Date;
+
+import Daos.CourseDao;
+import Helpers.CourseStatus;
 import Helpers.Database;
 import Helpers.DatePickerFragment;
 import Models.Course;
@@ -55,6 +60,7 @@ public class CreateCourseActivity extends AppCompatActivity implements DatePicke
         saveCourseButton = findViewById(R.id.saveCourseButton);
         cancelSaveCourseButton = findViewById(R.id.cancelSaveCourseButton);
         termId = getIntent().getIntExtra("termId", 0);
+        planToTakeRadio.setChecked(true);
 
         courseStartInput.setOnClickListener((e) -> updateStart());
         courseEndInput.setOnClickListener((e) -> updateEnd());
@@ -71,14 +77,67 @@ public class CreateCourseActivity extends AppCompatActivity implements DatePicke
            courseStartInput.setText(originalCourse.getCourse_start().toString().substring(0, 10) + ", " + originalCourse.getCourse_start().toString().substring(24, 28));
            courseEndInput.setText(originalCourse.getCourse_end().toString().substring(0, 10) + ", " + originalCourse.getCourse_end().toString().substring(24, 28));
            courseNoteInput.setText(originalCourse.getCourse_notes());
-           // todo radio button and checkbox
            courseAlert.setChecked(originalCourse.getCourse_alert());
+           String status = originalCourse.getCourse_status();
+           if (status == CourseStatus.InProgress.toString()){
+               progressRadio.setChecked(true);
+           }
+           if (status == CourseStatus.Complete.toString()){
+               completeRadio.setChecked(true);
+           }
+           if (status == CourseStatus.Dropped.toString()){
+               droppedRadio.setChecked(true);
+           }
        }
     }
-
+    
     private void saveTerm(){
-        // todo
-        this.sendToTermDetail();
+        if (checkFields()){
+            Date start = new Date(courseStartInput.getText().toString());
+            Date end = new Date(courseEndInput.getText().toString());
+            Course course = new Course();
+            course.setCourse_name(courseNameInput.getText().toString());
+            course.setTerm_fk(termId);
+            course.setCourse_start(start);
+            course.setCourse_end(end);
+            course.setCourse_alert(courseAlert.isChecked());
+            course.setCourse_notes(courseNameInput.toString());
+            course.setCourse_status(getCourseStatus());
+            db.courseDao().insertCourse(course);
+            this.sendToTermDetail();
+        }
+    }
+
+    private String getCourseStatus(){
+        if (planToTakeRadio.isChecked()){
+            return CourseStatus.PlanToTake.toString();
+        }
+        if (progressRadio.isChecked()){
+            return CourseStatus.InProgress.toString();
+        }
+        if (completeRadio.isChecked()){
+            return CourseStatus.Complete.toString();
+        }
+        return CourseStatus.Dropped.toString();
+    }
+
+    private boolean checkFields(){
+        if (courseNameInput.getText().toString().equals("")){
+            Toast toast = Toast.makeText(getApplicationContext(), "Name required", Toast.LENGTH_SHORT);
+            toast.show();
+            return false;
+        }
+        if (courseStartInput.getText().toString().contains("C")){
+            Toast toast = Toast.makeText(getApplicationContext(), "Start date required", Toast.LENGTH_SHORT);
+            toast.show();
+            return false;
+        }
+        if (courseEndInput.getText().toString().contains("C")){
+            Toast toast = Toast.makeText(getApplicationContext(), "End date required", Toast.LENGTH_SHORT);
+            toast.show();
+            return false;
+        }
+        return true;
     }
 
     private void updateStart(){
