@@ -49,7 +49,7 @@ public class TermDetailActivity extends AppCompatActivity {
     }
 
     private void loadCourseDetail(int courseId){
-        Intent intent = new Intent(TermDetailActivity.this, CreateCourseActivity.class);
+        Intent intent = new Intent(TermDetailActivity.this, CourseDetailActivity.class);
         intent.putExtra("courseId", courseId);
         startActivity(intent);
     }
