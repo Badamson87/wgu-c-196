@@ -90,9 +90,7 @@ public class CreateCourseActivity extends AppCompatActivity implements DatePicke
            }
        }
     }
-
-
-
+    
     private void saveTerm(){
         if (checkFields()){
             Date start = new Date(courseStartInput.getText().toString());
