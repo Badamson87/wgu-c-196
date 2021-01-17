@@ -17,6 +17,7 @@ import java.util.List;
 import Helpers.Database;
 import Models.Assessment;
 import Models.Course;
+import Models.Mentor;
 
 public class CourseDetailActivity extends AppCompatActivity {
     TextView courseName;
@@ -31,7 +32,7 @@ public class CourseDetailActivity extends AppCompatActivity {
     Database db;
     int courseId;
     int termId;
-
+    Mentor mentor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +69,17 @@ public class CourseDetailActivity extends AppCompatActivity {
        String end = course.getCourse_end().toString().substring(0, 10) + ", " + course.getCourse_end().toString().substring(24, 28);
         courseName.setText(course.getCourse_name());
         displayedCourseDates.setText(start + " - " + end);
+        this.getMentor();
         this.getAllCourseAssessments();
+    }
+
+    private void getMentor(){
+        List<Mentor> mentors = db.mentorDao().getAllMentorsByCourseId(courseId);
+        if (mentors.size() > 0){
+            Mentor mentor = mentors.get(0);
+            this.mentor = mentor;
+            this.displayedMentorName.setText(mentor.getMentor_name());
+        }
     }
 
     private void getAllCourseAssessments(){
@@ -105,6 +116,8 @@ public class CourseDetailActivity extends AppCompatActivity {
     private void loadCreateMentor(){
         Intent intent = new Intent(CourseDetailActivity.this, CreateMentorActivity.class);
         intent.putExtra("courseId", courseId);
+        intent.putExtra("termId", termId);
+        intent.putExtra("mentorId", mentor.getMentor_id());
         startActivity(intent);
     }
 

@@ -9,8 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.C196">
-        <activity android:name=".CreateMentorActivity"></activity>
-        <activity android:name=".CreateAssessmentActivity" />
+        <activity android:name=".CreateMentorActivity"
+            android:label="Mentor Info"></activity>
+        <activity android:name=".CreateAssessmentActivity"
+            android:label="Assessment Info"/>
         <activity
             android:name=".CourseDetailActivity"
             android:label="Course Detail"
