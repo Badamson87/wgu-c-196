@@ -79,13 +79,17 @@ public class CreateCourseActivity extends AppCompatActivity implements DatePicke
            courseNoteInput.setText(originalCourse.getCourse_notes());
            courseAlert.setChecked(originalCourse.getCourse_alert());
            String status = originalCourse.getCourse_status();
-           if (status == CourseStatus.InProgress.toString()){
+           System.out.println(status);
+           System.out.println(CourseStatus.InProgress.toString());
+           System.out.println(CourseStatus.Complete.toString());
+           System.out.println(CourseStatus.Dropped.toString());
+           if (status.equals("In Progress")){
                progressRadio.setChecked(true);
            }
-           if (status == CourseStatus.Complete.toString()){
+           if (status.equals("Complete")){
                completeRadio.setChecked(true);
            }
-           if (status == CourseStatus.Dropped.toString()){
+           if (status.equals("Dropped")){
                droppedRadio.setChecked(true);
            }
        }
@@ -93,32 +97,48 @@ public class CreateCourseActivity extends AppCompatActivity implements DatePicke
     
     private void saveTerm(){
         if (checkFields()){
-            Date start = new Date(courseStartInput.getText().toString());
-            Date end = new Date(courseEndInput.getText().toString());
-            Course course = new Course();
-            course.setCourse_name(courseNameInput.getText().toString());
-            course.setTerm_fk(termId);
-            course.setCourse_start(start);
-            course.setCourse_end(end);
-            course.setCourse_alert(courseAlert.isChecked());
-            course.setCourse_notes(courseNameInput.toString());
-            course.setCourse_status(getCourseStatus());
-            db.courseDao().insertCourse(course);
-            this.sendToTermDetail();
+            if (courseId > 0) {
+                Date start = new Date(courseStartInput.getText().toString());
+                Date end = new Date(courseEndInput.getText().toString());
+                Course course = new Course();
+                course.setCourse_name(courseNameInput.getText().toString());
+                course.setTerm_fk(termId);
+                course.setCourse_start(start);
+                course.setCourse_end(end);
+                course.setCourse_alert(courseAlert.isChecked());
+                course.setCourse_notes(courseNoteInput.getText().toString());
+                course.setCourse_status(getCourseStatus());
+                course.setCourse_id(courseId);
+                db.courseDao().updateCourse(course);
+                this.sendToTermDetail();
+            } else {
+                Date start = new Date(courseStartInput.getText().toString());
+                Date end = new Date(courseEndInput.getText().toString());
+                Course course = new Course();
+                course.setCourse_name(courseNameInput.getText().toString());
+                course.setTerm_fk(termId);
+                course.setCourse_start(start);
+                course.setCourse_end(end);
+                course.setCourse_alert(courseAlert.isChecked());
+                course.setCourse_notes(courseNoteInput.getText().toString());
+                course.setCourse_status(getCourseStatus());
+                db.courseDao().insertCourse(course);
+                this.sendToTermDetail();
+            }
         }
     }
 
     private String getCourseStatus(){
         if (planToTakeRadio.isChecked()){
-            return CourseStatus.PlanToTake.toString();
+            return "Plan To Take";
         }
         if (progressRadio.isChecked()){
-            return CourseStatus.InProgress.toString();
+            return "In Progress";
         }
         if (completeRadio.isChecked()){
-            return CourseStatus.Complete.toString();
+            return "Complete";
         }
-        return CourseStatus.Dropped.toString();
+        return "Dropped";
     }
 
     private boolean checkFields(){
