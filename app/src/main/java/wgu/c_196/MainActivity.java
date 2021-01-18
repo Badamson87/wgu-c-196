@@ -15,11 +15,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void myTermScreen(View view) {
-        Intent intent = new Intent(MainActivity.this, MyTermActivity.class);
-        startActivity(intent);
-    }
-
     public void allTermsScreen(View view) {
         Intent intent = new Intent(MainActivity.this, AllTermsActivity.class);
         startActivity(intent);
