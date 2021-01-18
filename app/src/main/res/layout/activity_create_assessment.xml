@@ -6,13 +6,139 @@
     android:layout_height="match_parent"
     tools:context=".CreateAssessmentActivity">
 
-    <TextView
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/deleteAssessment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create assessment"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:clickable="true"
+        app:srcCompat="@android:drawable/ic_delete"
+        app:fabSize="mini"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/assessmentNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name:"
+        tools:layout_editor_absoluteX="184dp"
+        tools:layout_editor_absoluteY="358dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="12dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <EditText
+        android:id="@+id/assessmentNameInput"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="75dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:inputType="text"
+        />
+
+    <TextView
+        android:id="@+id/assessmentStartText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start:"
+        tools:layout_editor_absoluteX="184dp"
+        tools:layout_editor_absoluteY="358dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="12dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/assessmentNameText"/>
+
+    <TextView
+        android:id="@+id/assessmentStartInput"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="75dp"
+        android:text="Click to Set Start Date"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/assessmentNameText"
+        />
+
+    <TextView
+        android:id="@+id/assessmentEndText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="End:"
+        tools:layout_editor_absoluteX="184dp"
+        tools:layout_editor_absoluteY="358dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="12dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/assessmentStartText"/>
+
+    <TextView
+        android:id="@+id/assessmentEndInput"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="75dp"
+        android:text="Click to Set End Date"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/assessmentStartText"
+        />
+
+    <TextView
+        android:id="@+id/assessmentAlertText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alert"
+        tools:layout_editor_absoluteX="184dp"
+        tools:layout_editor_absoluteY="358dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="12dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/assessmentEndText"/>
+
+    <CheckBox
+        android:id="@+id/assessmentAlert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="75dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/assessmentEndText" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".5"
+        />
+
+    <Button
+        android:id="@+id/saveAssessmentButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:clickable="true"
+        app:layout_constraintRight_toLeftOf="@id/guidelineCenter"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="12dp"
+        app:layout_constraintTop_toBottomOf="@id/assessmentAlertText"
+        />
+
+    <Button
+        android:id="@+id/cancelSaveAssessmentButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:clickable="true"
+        app:layout_constraintLeft_toRightOf="@id/guidelineCenter"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginLeft="12dp"
+        app:layout_constraintTop_toBottomOf="@id/assessmentAlertText"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

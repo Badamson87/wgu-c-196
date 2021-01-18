@@ -60,7 +60,11 @@ public class CourseDetailActivity extends AppCompatActivity {
     }
 
     private void loadAssessmentDetail(int assessmentId){
-//        todo
+        Intent intent = new Intent(CourseDetailActivity.this, CreateAssessmentActivity.class);
+        intent.putExtra("courseId", courseId);
+        intent.putExtra("termId", termId);
+        intent.putExtra("assessmentId", assessmentId);
+        startActivity(intent);
     }
 
     private void loadCourseDetail(){
@@ -124,6 +128,7 @@ public class CourseDetailActivity extends AppCompatActivity {
     private void addAssessmentScreen(){
         Intent intent = new Intent(CourseDetailActivity.this, CreateAssessmentActivity.class);
         intent.putExtra("courseId", courseId);
+        intent.putExtra("termId", termId);
         startActivity(intent);
     }
 }
