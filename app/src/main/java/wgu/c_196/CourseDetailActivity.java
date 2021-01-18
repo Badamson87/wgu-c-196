@@ -32,6 +32,7 @@ public class CourseDetailActivity extends AppCompatActivity {
     Database db;
     int courseId;
     int termId;
+    int mentorId;
     Mentor mentor;
 
     @Override
@@ -82,6 +83,7 @@ public class CourseDetailActivity extends AppCompatActivity {
         if (mentors.size() > 0){
             Mentor mentor = mentors.get(0);
             this.mentor = mentor;
+            mentorId = mentor.getMentor_id();
             this.displayedMentorName.setText(mentor.getMentor_name());
         }
     }
@@ -121,7 +123,7 @@ public class CourseDetailActivity extends AppCompatActivity {
         Intent intent = new Intent(CourseDetailActivity.this, CreateMentorActivity.class);
         intent.putExtra("courseId", courseId);
         intent.putExtra("termId", termId);
-        intent.putExtra("mentorId", mentor.getMentor_id());
+        intent.putExtra("mentorId", mentorId);
         startActivity(intent);
     }
 
