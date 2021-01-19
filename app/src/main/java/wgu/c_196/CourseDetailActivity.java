@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +30,7 @@ public class CourseDetailActivity extends AppCompatActivity {
     FloatingActionButton editCourse;
     FloatingActionButton editMentor;
     FloatingActionButton addAssessment;
+    Button shareNoteButton;
     Database db;
     int courseId;
     int termId;
@@ -50,6 +52,8 @@ public class CourseDetailActivity extends AppCompatActivity {
         editCourse = findViewById(R.id.editCourse);
         editMentor = findViewById(R.id.editMentor);
         addAssessment = findViewById(R.id.addAssessmentFAB);
+        shareNoteButton = findViewById(R.id.shareNoteButton);
+        shareNoteButton.setOnClickListener((e) -> loadShareNote());
         editCourse.setOnClickListener((e) -> loadEditCourse());
         deleteCourse.setOnClickListener((e) -> deleteCourse());
         editMentor.setOnClickListener((e) -> loadCreateMentor());
@@ -124,6 +128,13 @@ public class CourseDetailActivity extends AppCompatActivity {
         intent.putExtra("courseId", courseId);
         intent.putExtra("termId", termId);
         intent.putExtra("mentorId", mentorId);
+        startActivity(intent);
+    }
+
+    private void loadShareNote(){
+        Intent intent = new Intent(CourseDetailActivity.this, ShareNoteActivity.class);
+        intent.putExtra("courseId", courseId);
+        intent.putExtra("termId", termId);
         startActivity(intent);
     }
 
