@@ -2,7 +2,9 @@ package wgu.c_196;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -18,7 +20,6 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Date;
 
-import Daos.CourseDao;
 import Helpers.CourseStatus;
 import Helpers.Database;
 import Helpers.DatePickerFragment;
@@ -41,6 +42,7 @@ public class CreateCourseActivity extends AppCompatActivity implements DatePicke
     Boolean updateStart;
     int termId;
     int courseId;
+    int notifyId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +63,7 @@ public class CreateCourseActivity extends AppCompatActivity implements DatePicke
         cancelSaveCourseButton = findViewById(R.id.cancelSaveCourseButton);
         termId = getIntent().getIntExtra("termId", 0);
         planToTakeRadio.setChecked(true);
-
+        notifyId = 1;
         courseStartInput.setOnClickListener((e) -> updateStart());
         courseEndInput.setOnClickListener((e) -> updateEnd());
         cancelSaveCourseButton.setOnClickListener((e) -> sendToTermDetail());
@@ -97,6 +99,9 @@ public class CreateCourseActivity extends AppCompatActivity implements DatePicke
     
     private void saveTerm(){
         if (checkFields()){
+            if (!this.setAlert()){
+                return;
+            }
             if (courseId > 0) {
                 Date start = new Date(courseStartInput.getText().toString());
                 Date end = new Date(courseEndInput.getText().toString());
@@ -126,6 +131,39 @@ public class CreateCourseActivity extends AppCompatActivity implements DatePicke
                 this.sendToTermDetail();
             }
         }
+    }
+
+
+
+    private boolean setAlert(){
+        Date alertStartDate = new Date(courseStartInput.getText().toString());
+        Date alertEndDate = new Date(courseEndInput.getText().toString());
+        if (alertStartDate.before(new Date())){
+            Toast toast = Toast.makeText(getApplicationContext(), "Start Date is before current date", Toast.LENGTH_SHORT);
+            toast.show();
+            return false;
+        }
+        if (alertEndDate.before(new Date())){
+            Toast toast = Toast.makeText(getApplicationContext(), "End Date is before current date", Toast.LENGTH_SHORT);
+            toast.show();
+            return false;
+        }
+        AlertReminder.setAlert(alertStartDate, alertEndDate, "Course Alert", courseNameInput.getText().toString(), getApplicationContext());
+//        sendIntent.putExtra("title", "Course Alert");
+//        sendIntent.putExtra("startMessage", courseNameInput.getText().toString() + " is Starting");
+//        sendIntent.putExtra("endMessage", courseNameInput.getText().toString() + " is ending");
+//        sendIntent.putExtra("startDate", alertStartDate);
+//        sendIntent.putExtra("endDate", alertEndDate);
+//        sendIntent.putExtra("notifyId", notifyId);
+//
+//        PendingIntent thisPendingIntentIntent = PendingIntent.getBroadcast(getApplicationContext(), notifyId, sendIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+//        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+//
+//        alarmManager.set(AlarmManager.RTC_WAKEUP, alertStartDate.getTime(), thisPendIntent);
+//        alarmManager.set(AlarmManager.RTC_WAKEUP, alertEndDate.getTime(), thisPendIntent);
+//        Toast toast = Toast.makeText(getApplicationContext(), "Alarms set", Toast.LENGTH_SHORT);
+//        toast.show();
+        return true;
     }
 
     private String getCourseStatus(){

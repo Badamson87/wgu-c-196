@@ -3,7 +3,7 @@
     package="wgu.c_196">
 
     <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -12,8 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.C196">
-        <activity android:name=".ShareNoteActivity"
-            android:label="Course Note"></activity>
+        <receiver
+            android:name=".AlertReminder"
+            android:enabled="true"
+            android:exported="true"></receiver>
+
+        <activity
+            android:name=".ShareNoteActivity"
+            android:label="Course Note" />
         <activity
             android:name=".CreateMentorActivity"
             android:label="Mentor Info" />
