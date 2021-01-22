@@ -138,6 +138,9 @@ public class CreateCourseActivity extends AppCompatActivity implements DatePicke
     private boolean setAlert(){
         Date alertStartDate = new Date(courseStartInput.getText().toString());
         Date alertEndDate = new Date(courseEndInput.getText().toString());
+        if (!courseAlert.isChecked()){
+            return true;
+        }
         if (alertStartDate.before(new Date())){
             Toast toast = Toast.makeText(getApplicationContext(), "Start Date is before current date", Toast.LENGTH_SHORT);
             toast.show();

@@ -95,6 +95,9 @@ public class CreateAssessmentActivity extends AppCompatActivity implements DateP
 
     public void saveAssessment() {
         if (checkFields()) {
+            if (!this.setAlert()){
+                return;
+            }
             Date start = new Date(assessmentStartInput.getText().toString());
             Date end = new Date(assessmentEndInput.getText().toString());
             Assessment assessment = new Assessment();
@@ -111,6 +114,27 @@ public class CreateAssessmentActivity extends AppCompatActivity implements DateP
             }
             sendToCourseDetail();
         }
+    }
+
+    public boolean setAlert(){
+        if (!assessmentAlert.isChecked()){
+            return true;
+        }
+        Date startDate = new Date(assessmentStartInput.getText().toString());
+        Date startEnd = new Date(assessmentEndInput.getText().toString());
+        if (startDate.before(new Date())){
+            Toast toast = Toast.makeText(getApplicationContext(), "Start Date is before current date", Toast.LENGTH_SHORT);
+            toast.show();
+            return false;
+        }
+        if (startEnd.before(new Date())){
+            Toast toast = Toast.makeText(getApplicationContext(), "End Date is before current date", Toast.LENGTH_SHORT);
+            toast.show();
+            return false;
+        }
+        AlertReminder.setAlert(startDate, "Assessment Alert", assessmentName.getText().toString() + " is starting", getApplicationContext());
+        AlertReminder.setAlert(startEnd, "Assessment Alert", assessmentName.getText().toString() + " is ending", getApplicationContext());
+        return true;
     }
 
     public boolean checkFields(){
