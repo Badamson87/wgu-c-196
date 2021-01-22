@@ -24,6 +24,7 @@ public class CourseDetailActivity extends AppCompatActivity {
     TextView courseName;
     TextView displayedCourseDates;
     TextView displayedMentorName;
+    TextView displayedStatusName;
     ListView allAssessmentsByCourse;
     List<Assessment> assessments;
     FloatingActionButton deleteCourse;
@@ -47,6 +48,7 @@ public class CourseDetailActivity extends AppCompatActivity {
         courseName = findViewById(R.id.displayedCourseName);
         displayedCourseDates = findViewById(R.id.displayedCourseDates);
         displayedMentorName = findViewById(R.id.displayedMentorName);
+        displayedStatusName = findViewById(R.id.displayedStatusName);
         allAssessmentsByCourse = findViewById(R.id.allAssessmentsByCourse);
         deleteCourse = findViewById(R.id.deleteCourse);
         editCourse = findViewById(R.id.editCourse);
@@ -78,6 +80,7 @@ public class CourseDetailActivity extends AppCompatActivity {
        String end = course.getCourse_end().toString().substring(0, 10) + ", " + course.getCourse_end().toString().substring(24, 28);
         courseName.setText(course.getCourse_name());
         displayedCourseDates.setText(start + " - " + end);
+        displayedStatusName.setText(course.getCourse_status());
         this.getMentor();
         this.getAllCourseAssessments();
     }
