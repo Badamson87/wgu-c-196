@@ -148,21 +148,8 @@ public class CreateCourseActivity extends AppCompatActivity implements DatePicke
             toast.show();
             return false;
         }
-        AlertReminder.setAlert(alertStartDate, alertEndDate, "Course Alert", courseNameInput.getText().toString(), getApplicationContext());
-//        sendIntent.putExtra("title", "Course Alert");
-//        sendIntent.putExtra("startMessage", courseNameInput.getText().toString() + " is Starting");
-//        sendIntent.putExtra("endMessage", courseNameInput.getText().toString() + " is ending");
-//        sendIntent.putExtra("startDate", alertStartDate);
-//        sendIntent.putExtra("endDate", alertEndDate);
-//        sendIntent.putExtra("notifyId", notifyId);
-//
-//        PendingIntent thisPendingIntentIntent = PendingIntent.getBroadcast(getApplicationContext(), notifyId, sendIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-//        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-//
-//        alarmManager.set(AlarmManager.RTC_WAKEUP, alertStartDate.getTime(), thisPendIntent);
-//        alarmManager.set(AlarmManager.RTC_WAKEUP, alertEndDate.getTime(), thisPendIntent);
-//        Toast toast = Toast.makeText(getApplicationContext(), "Alarms set", Toast.LENGTH_SHORT);
-//        toast.show();
+        AlertReminder.setAlert(alertStartDate, "Course Alert", courseNameInput.getText().toString() + " is starting", getApplicationContext());
+        AlertReminder.setAlert(alertEndDate, "Course Alert", courseNameInput.getText().toString() + " is ending", getApplicationContext());
         return true;
     }
 
