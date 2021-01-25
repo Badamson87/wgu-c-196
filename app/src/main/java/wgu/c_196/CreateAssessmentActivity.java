@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +30,9 @@ public class CreateAssessmentActivity extends AppCompatActivity implements DateP
     Button saveAssessmentButton;
     Button cancelAssessmentButton;
     FloatingActionButton deleteAssessment;
+//    RadioGroup assessmentTypeGroup;
+//    RadioButton performanceRadio;
+//    RadioButton objectiveRadio;
     Database db;
     int termId;
     int courseId;
@@ -43,6 +48,9 @@ public class CreateAssessmentActivity extends AppCompatActivity implements DateP
         assessmentStartInput = findViewById(R.id.assessmentStartInput);
         assessmentEndInput = findViewById(R.id.assessmentEndInput);
         assessmentAlert = findViewById(R.id.assessmentAlert);
+//        assessmentTypeGroup = findViewById(R.id.assessmentTypeRadioGroup);
+//        performanceRadio = findViewById(R.id.performanceRadio);
+//        objectiveRadio = findViewById(R.id.objectiveRadio);
         cancelAssessmentButton = findViewById(R.id.cancelSaveAssessmentButton);
         saveAssessmentButton = findViewById(R.id.saveAssessmentButton);
         deleteAssessment = findViewById(R.id.deleteAssessment);

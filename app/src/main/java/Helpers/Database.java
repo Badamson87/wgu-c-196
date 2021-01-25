@@ -14,7 +14,7 @@ import Models.Course;
 import Models.Mentor;
 import Models.Term;
 
-@androidx.room.Database(entities = {Term.class, Course.class, Mentor.class, Assessment.class}, exportSchema = false, version = 2)
+@androidx.room.Database(entities = {Term.class, Course.class, Mentor.class, Assessment.class}, exportSchema = false, version = 3)
 @TypeConverters({Converter.class})
 public abstract class Database extends RoomDatabase {
     private static final String DB_NAME = "wgu_db";

@@ -29,17 +29,24 @@ public class Assessment {
     private Date assessment_end;
     @ColumnInfo(name = "assessment_alarm")
     private boolean assessment_alarm;
+    @ColumnInfo(name = "assessment_type")
+    private String assessment_type;
 
     public Assessment(){}
 
-    public Assessment(int assessment_id, int course_fk, String assessment_name, Date assessment_start, Date assessment_end, boolean assessment_alarm){
+    public Assessment(int assessment_id, int course_fk, String assessment_name, Date assessment_start, Date assessment_end, boolean assessment_alarm, String type ){
         this.assessment_id = assessment_id;
         this.course_fk = course_fk;
         this.assessment_name = assessment_name;
         this.assessment_start = assessment_start;
         this.assessment_end = assessment_end;
         this.assessment_alarm = assessment_alarm;
+        this.assessment_type = type;
     }
+
+    public void setAssessment_type(String type){ this.assessment_type = type;}
+
+    public String getAssessment_type() {return assessment_type;}
 
     public boolean getAssessment_alarm() {
         return assessment_alarm;
