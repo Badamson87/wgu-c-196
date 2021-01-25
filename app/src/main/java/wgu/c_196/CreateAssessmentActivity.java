@@ -30,9 +30,9 @@ public class CreateAssessmentActivity extends AppCompatActivity implements DateP
     Button saveAssessmentButton;
     Button cancelAssessmentButton;
     FloatingActionButton deleteAssessment;
-//    RadioGroup assessmentTypeGroup;
-//    RadioButton performanceRadio;
-//    RadioButton objectiveRadio;
+    RadioGroup assessmentTypeGroup;
+    RadioButton performanceRadio;
+    RadioButton objectiveRadio;
     Database db;
     int termId;
     int courseId;
@@ -48,9 +48,10 @@ public class CreateAssessmentActivity extends AppCompatActivity implements DateP
         assessmentStartInput = findViewById(R.id.assessmentStartInput);
         assessmentEndInput = findViewById(R.id.assessmentEndInput);
         assessmentAlert = findViewById(R.id.assessmentAlert);
-//        assessmentTypeGroup = findViewById(R.id.assessmentTypeRadioGroup);
-//        performanceRadio = findViewById(R.id.performanceRadio);
-//        objectiveRadio = findViewById(R.id.objectiveRadio);
+        assessmentTypeGroup = findViewById(R.id.assessmentTypeRadioGroup);
+        performanceRadio = findViewById(R.id.performanceRadio);
+        performanceRadio.setChecked(true);
+        objectiveRadio = findViewById(R.id.objectiveRadio);
         cancelAssessmentButton = findViewById(R.id.cancelSaveAssessmentButton);
         saveAssessmentButton = findViewById(R.id.saveAssessmentButton);
         deleteAssessment = findViewById(R.id.deleteAssessment);
@@ -87,6 +88,9 @@ public class CreateAssessmentActivity extends AppCompatActivity implements DateP
             assessmentStartInput.setText(assessment.getAssessment_start().toString().substring(0, 10) + ", " + assessment.getAssessment_start().toString().substring(24, 28));
             assessmentEndInput.setText(assessment.getAssessment_end().toString().substring(0, 10) + ", " + assessment.getAssessment_end().toString().substring(24, 28));
             assessmentAlert.setChecked(assessment.getAssessment_alarm());
+            if (assessment.getAssessment_type().equals("Objective")){
+                objectiveRadio.setChecked(true);
+            }
         }
     }
 
@@ -109,6 +113,7 @@ public class CreateAssessmentActivity extends AppCompatActivity implements DateP
             Date start = new Date(assessmentStartInput.getText().toString());
             Date end = new Date(assessmentEndInput.getText().toString());
             Assessment assessment = new Assessment();
+            assessment.setAssessment_type(getAssessmentType());
             assessment.setAssessment_name(assessmentName.getText().toString());
             assessment.setAssessment_start(start);
             assessment.setAssessment_end(end);
@@ -122,6 +127,13 @@ public class CreateAssessmentActivity extends AppCompatActivity implements DateP
             }
             sendToCourseDetail();
         }
+    }
+
+    public String getAssessmentType(){
+        if (performanceRadio.isChecked()){
+            return "Performance";
+        }
+        return "Objective";
     }
 
     public boolean setAlert(){
